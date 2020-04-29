@@ -54,7 +54,7 @@ if(canvas.getContext) {
   }
   drawCanvas(datas)
 
-  const mousePoint = (canvas, ev) => { // mouse point
+  const mousePoint = (canvas, ev) => { 
     const rect = canvas.getBoundingClientRect()
     return {
       pointX: Math.round(ev.clientX - rect.left),
