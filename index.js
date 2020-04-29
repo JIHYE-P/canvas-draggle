@@ -30,7 +30,7 @@ const datas = [
 const canvas = document.getElementById('canvas')
 if(canvas.getContext) {
   const ctx = canvas.getContext('2d')
-  let active = null
+  let activeData = null
   let isDrag = false
   let delta = new Object()
   
@@ -69,7 +69,8 @@ if(canvas.getContext) {
       const {x, y, width, height} = data
       if(pointX > x && pointX < (x+width) && pointY > y && pointY < (y+height)) {
         isDrag = true
-        active = data
+        activeData = data
+        
         delta.X = x-pointX
         delta.Y = y-pointY
 
@@ -85,8 +86,8 @@ if(canvas.getContext) {
     if(isDrag) {
       const {pointX, pointY} = mousePoint(canvas, ev)
       
-      active.x = pointX + delta.X
-      active.y = pointY + delta.Y
+      activeData.x = pointX + delta.X
+      activeData.y = pointY + delta.Y
 
       ctx.clearRect(0,0,canvas.width,canvas.height);
       drawCanvas(datas)
