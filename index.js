@@ -27,7 +27,7 @@ const drawRect = data => {
 }
 
 const drawCanvas = (datas) => {
-  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
   for(const data of datas) {
     switch(data.type) {
       case 'rect': drawRect(data)
@@ -114,19 +114,14 @@ const dragCanvas = (datas) => {
 
 const main = async() => {
   try{
-    const datas = await Promise.all(
-      datasDummy.map(async ({url, ...data}) => {
-        return data.type === 'image' 
-          ? {
-            ...data,
-            image: await getImage(url)
-          } 
-          : data;
-      })
-    )
     // const imageData = await createImageData('https://hashsnap-static.s3.ap-northeast-2.amazonaws.com/file/200420_fc_seoul/sticker9.png')    
     // datas.push(imageData)
-    
+    const datas = await Promise.all(
+      datasDummy.map(async ({url, ...data}) => {
+        return data.type === 'image' ? { ...data, image: await getImage(url) } : data
+      })
+    )
+
     drawCanvas(datas)      
     dragCanvas(datas)
   }catch(ev){
