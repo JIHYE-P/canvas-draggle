@@ -121,27 +121,12 @@ const main = async() => {
         return data.type === 'image' ? { ...data, image: await getImage(url) } : data
       })
     )
-
     drawCanvas(datas)      
     dragCanvas(datas)
+
   }catch(ev){
     console.error
   }
 }
-
 main()
-
-
-async function createImageData(url) {
-  const image = await getImage(url)
-  const data = {
-    type: 'image',
-    width: 100,
-    height: 100,
-    x: 300,
-    y: 40,
-    image: image
-  }
-  return data
-}
 

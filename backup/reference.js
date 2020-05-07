@@ -1,5 +1,18 @@
 import './index.css'
 
+async function createImageData(url) {
+  const image = await getImage(url)
+  const data = {
+    type: 'image',
+    width: 100,
+    height: 100,
+    x: 300,
+    y: 40,
+    image: image
+  }
+  return data
+}
+
 const datas = [
   {
     type: 'image',
