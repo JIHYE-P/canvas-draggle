@@ -31,7 +31,6 @@ export const getImage = url => new Promise(res => {
   img.src = url
 })
 
-
 // const imageData = await createImageData('https://hashsnap-static.s3.ap-northeast-2.amazonaws.com/file/200420_fc_seoul/sticker9.png')    
 // datas.push(imageData)
 
