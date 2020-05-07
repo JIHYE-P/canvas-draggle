@@ -82,6 +82,7 @@ if(canvas.getContext){
         active.y = y - pointY
         
         drawCanvas(datas)
+        break;
       }
     }
   }
