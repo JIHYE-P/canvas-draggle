@@ -30,22 +30,26 @@ class Canvas {
         break;
     }
 
-    canvas.addEventListener('mousedown', (ev) => {
-      const {clientX, clientY} = ev
-      const {left, top} = this.rect
+    canvas.addEventListener('mousedown', this.mousedown)
+    // canvas.addEventListener('mousedown', (ev) => {
+    //   const {clientX, clientY} = ev
+    //   const {left, top} = this.rect
       
-      this.currentX = clientX - left
-      this.currentY = clientY - top
+    //   this.currentX = clientX - left
+    //   this.currentY = clientY - top
     
-      this.shapes.forEach((item) => {
-        const {x, y, width, height} = item
-        if(this.currentX > x && this.currentX < (x+width) && this.currentY > y && this.currentY < (y+height)) {
-          this.currentCanvas = item
-          this.isDrag = true
-          console.log(item)
-        }
-      })
-    })
+    //   this.shapes.forEach((item) => {
+    //     const {x, y, width, height} = item
+    //     if(this.currentX > x && this.currentX < (x+width) && this.currentY > y && this.currentY < (y+height)) {
+    //       this.currentCanvas = item
+    //       this.isDrag = true
+    //       console.log(item)
+    //     }
+    //   })
+    // })
+  }
+  mousedown(){
+    console.log(this.canvas)
   }
 }
 
