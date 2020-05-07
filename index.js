@@ -1,5 +1,6 @@
 import './index.css'
 import 'babel-polyfill'
+import { datasDummy, getImage } from './utils'
 // canvas detect inner path js
 
 let dragData = null
@@ -8,12 +9,6 @@ let delta = new Object()
 
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
-
-const getImage = src => new Promise(res => {
-  const img = new Image
-  img.onload = () => res(img)
-  img.src = src
-})
 
 const drawImage = (data) => {
   const {width, height, x, y, image} = data
@@ -79,33 +74,6 @@ const handleMouseUp = datas => {
   drawCanvas(datas)
 }
 
-const datasDummy = [
-  {
-    type: 'image',
-    width: 80,
-    height: 80,
-    x: 100,
-    y: 120,
-    url: 'https://hashsnap-static.s3.ap-northeast-2.amazonaws.com/file/200420_fc_seoul/sticker6.png'
-  },
-  {
-    type: 'rect',
-    width: 150,
-    height: 150,
-    x: 300,
-    y: 200,
-    style: '#f00f00',
-  },
-  {
-    type: 'image',
-    width: 100,
-    height: 100,
-    x: 300,
-    y: 40,
-    url: 'https://hashsnap-static.s3.ap-northeast-2.amazonaws.com/file/200420_fc_seoul/sticker9.png'
-  }
-]
-
 const dragCanvas = (datas) => {
   canvas.addEventListener('mousedown', (ev) => handleMouseDown(ev, datas))
   canvas.addEventListener('mousemove', (ev) => handleMouseMove(ev, datas))
@@ -114,8 +82,6 @@ const dragCanvas = (datas) => {
 
 const main = async() => {
   try{
-    // const imageData = await createImageData('https://hashsnap-static.s3.ap-northeast-2.amazonaws.com/file/200420_fc_seoul/sticker9.png')    
-    // datas.push(imageData)
     const datas = await Promise.all(
       datasDummy.map(async ({url, ...data}) => {
         return data.type === 'image' ? { ...data, image: await getImage(url) } : data

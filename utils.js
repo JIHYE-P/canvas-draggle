@@ -31,3 +31,19 @@ export const getImage = url => new Promise(res => {
   img.src = url
 })
 
+
+// const imageData = await createImageData('https://hashsnap-static.s3.ap-northeast-2.amazonaws.com/file/200420_fc_seoul/sticker9.png')    
+// datas.push(imageData)
+
+export const createImageData = async(url) => {
+  const image = await getImage(url)
+  const data = {
+    type: 'image',
+    width: 100,
+    height: 100,
+    x: 300,
+    y: 40,
+    image: image
+  }
+  return data
+}
